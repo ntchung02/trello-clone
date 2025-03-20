@@ -1,7 +1,7 @@
 import React from "react";
 import ModeSelect from "../ModeSelect";
 import Box from "@mui/material/Box";
-import { Apps } from "@mui/icons-material";
+import { Apps, LibraryAdd } from "@mui/icons-material";
 import { ReactComponent as iconTrello } from "~/assets/icon-trello.svg";
 import { SvgIcon, Typography } from "@mui/material";
 import WorkSpaces from "./Menus/WorkSpaces";
@@ -54,7 +54,9 @@ function AppBar() {
           <Reacent />
           <Starred />
           <WorkSpaces />
-          <Button variant="outlined">Create</Button>
+          <Button startIcon={<LibraryAdd />} variant="outlined">
+            Create
+          </Button>
         </Box>
       </Box>
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
