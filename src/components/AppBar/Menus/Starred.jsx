@@ -23,6 +23,7 @@ function Starred() {
         aria-controls={open ? "basic-menu-Starred" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
+        sx={{ color: "white" }}
         onClick={handleClick}
         endIcon={<ExpandMore />}
       >

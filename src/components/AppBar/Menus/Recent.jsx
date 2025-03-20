@@ -23,6 +23,7 @@ function Recent() {
         aria-controls={open ? "basic-menu-Recent" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
+        sx={{ color: "white" }}
         onClick={handleClick}
         endIcon={<ExpandMore />}
       >
