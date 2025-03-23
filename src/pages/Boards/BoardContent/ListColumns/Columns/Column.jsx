@@ -16,8 +16,21 @@ import Cloud from "@mui/icons-material/Cloud";
 import { ExpandMore } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import ListCards from "./ListCards/ListCards";
+import { mapOrder } from "~/utils/sorts";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
-function Column() {
+function Column({ column }) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: column._id, data: { ...column } });
+
+  const dndKitColumnStyles = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+  };
+
+  const oderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
+
   const COLUMN_HEADER_HEIGHT = "50px";
   const COLUMN_FOOTER_HEIGHT = "56px";
 
@@ -32,6 +45,10 @@ function Column() {
   return (
     <>
       <Box
+        ref={setNodeRef}
+        style={dndKitColumnStyles}
+        {...attributes}
+        {...listeners}
         sx={{
           maxWidth: "300px",
           minWidth: "300px",
@@ -60,7 +77,7 @@ function Column() {
             variant="h6"
             sx={{ fontSize: "1rem", fontWeight: "bold", cursor: "pointer" }}
           >
-            Column Title
+            {column?.title}
           </Typography>
           <Box>
             <Tooltip title="More options">
@@ -124,7 +141,7 @@ function Column() {
           </Box>
         </Box>
         {/* List cart */}
-        <ListCards />
+        <ListCards cards={oderedCards} />
         {/* Footer card */}
         <Box
           sx={{

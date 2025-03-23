@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ModeSelect from "../ModeSelect";
+import ModeSelect from "../ModeSelect/ModeSelect";
 import Box from "@mui/material/Box";
 import { Apps, LibraryAdd, Search } from "@mui/icons-material";
 import { ReactComponent as iconTrello } from "~/assets/icon-trello.svg";
@@ -92,7 +92,7 @@ function AppBar() {
             endAdornment: (
               <InputAdornment position="end">
                 <CloseIcon
-                  onClick={(e) => setSearchValue("")}
+                  onClick={() => setSearchValue("")}
                   fontSize="small"
                   sx={{
                     color: searchValue ? "white" : "transparent",

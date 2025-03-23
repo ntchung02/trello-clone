@@ -12,6 +12,7 @@ import {
 import { Button, Tooltip } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import AvatarGroup from "@mui/material/AvatarGroup";
+import { capitalizeFirstLetter } from "~/utils/formatters";
 
 const MENU_STYLE = {
   color: "white",
@@ -27,7 +28,8 @@ const MENU_STYLE = {
   },
 };
 
-function Boardbar() {
+function Boardbar({board}) {
+
   return (
     <Box
       px={2}
@@ -47,13 +49,13 @@ function Boardbar() {
         <Chip
           sx={MENU_STYLE}
           icon={<Dashboard />}
-          label="With Icon"
+          label={board?.title}
           onClick={() => {}}
         />
         <Chip
           sx={MENU_STYLE}
           icon={<VpnLock />}
-          label="Puclic/Private workspace"
+          label={capitalizeFirstLetter(board?.type)}
           onClick={() => {}}
         />
         <Chip

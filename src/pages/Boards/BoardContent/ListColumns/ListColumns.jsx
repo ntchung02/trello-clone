@@ -3,49 +3,58 @@ import Box from "@mui/material/Box";
 import Column from "./Columns/Column";
 import { Button } from "@mui/material";
 import { NoteAdd } from "@mui/icons-material";
+import {
+  SortableContext,
+  horizontalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
-function ListColumns() {
+function ListColumns({ columns }) {
   return (
     <>
-      {/* Box column */}
-      <Box
-        sx={{
-          bgcolor: "inherit",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          overflowX: "auto",
-          overflowY: "hidden",
-        }}
+      <SortableContext
+        items={columns?.map((c) => c._id)}
+        strategy={horizontalListSortingStrategy}
       >
-        <Column />
-        <Column />
-
-        {/* add new cl bt */}
         <Box
           sx={{
-            minWidth: "200px",
-            maxWidth: "200px",
-            mx: "16px",
-            borderRadius: "6px",
-            height: "fit-content",
-            bgcolor: "#ffffff3d",
+            bgcolor: "inherit",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            overflowX: "auto",
+            overflowY: "hidden",
           }}
         >
-          <Button
+          {columns?.map((column) => {
+            return <Column Key={column._id} column={column} />;
+          })}
+
+          {/* add new cl bt */}
+          <Box
             sx={{
-              color: "white",
-              width: "100%",
-              justifyContent: "center",
-              pl: 2.5,
-              py: 1,
+              minWidth: "200px",
+              maxWidth: "200px",
+              mx: "16px",
+              borderRadius: "6px",
+              height: "fit-content",
+              bgcolor: "#ffffff3d",
             }}
-            startIcon={<NoteAdd />}
           >
-            Add new column
-          </Button>
+            <Button
+              sx={{
+                color: "white",
+                width: "100%",
+                justifyContent: "center",
+                pl: 2.5,
+                py: 1,
+              }}
+              startIcon={<NoteAdd />}
+            >
+              Add new column
+            </Button>
+          </Box>
         </Box>
-      </Box>
+      </SortableContext>
     </>
   );
 }

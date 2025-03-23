@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Cards from "./Card/Card";
 
-function ListCards() {
+function ListCards({cards}) {
   const COLUMN_HEADER_HEIGHT = "50px";
   const COLUMN_FOOTER_HEIGHT = "56px";
   return (
@@ -31,10 +31,9 @@ function ListCards() {
           },
         }}
       >
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
+        {cards?.map((card) => {
+          return <Cards Key={card._id} card={card} />;
+        })}
       </Box>
     </>
   );
